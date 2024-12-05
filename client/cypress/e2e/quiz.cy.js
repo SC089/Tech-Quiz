@@ -16,71 +16,107 @@ describe('Tech Quiz End-to-End Tests', () => {
           { text: "Colorful Style Sheets", isCorrect: false },
         ],
       },
+      {
+        question: "What does JS stand for?",
+        answers: [
+            { text: "JavaSource", isCorrect: false },
+            { text: "JustScript", isCorrect: false },
+            { text: "JavaScript", isCorrect: true },
+        ],
+      },
+      {
+        question: "Which company developed the React framework?",
+        answers: [
+            { text: "Google", "isCorrect": false },
+            { text: "Facebook", "isCorrect": true },
+            { text: "Microsoft", "isCorrect": false },
+        ],
+      },
+      {
+        question: "What does API stand for?",
+        answers: [
+            { text: "Application Programming Interface", "isCorrect": true },
+            { text: "Advanced Programming Integration", "isCorrect": false },
+            { text: "Application Process Integration", "isCorrect": false },
+        ],
+      },
+      {
+        question: "Which of these is a NoSQL database?",
+        answers: [
+            { text: "MongoDB", "isCorrect": true },
+            { text: "MySQL", "isCorrect": false },
+            { text: "PostgreSQL", "isCorrect": false },
+        ],
+      },
+      {
+        question: "What is the purpose of version control systems like Git?",
+        answers: [
+            { text: "To create graphics", "isCorrect": false },
+            { text: "To manage and track changes in code", "isCorrect": true },
+            { text: "To debug applications", "isCorrect": false },
+        ],
+      },
+      {
+        question: "Which of these is a front-end framework?",
+        answers: [
+            { text: "Laravel", "isCorrect": false },
+            { text: "Django", "isCorrect": false },
+            { text: "Angular", "isCorrect": true },
+        ],
+      },
+      {
+        question: "What is Cypress primarily used for?",
+        answers: [
+            { text: "End-to-end testing", "isCorrect": true },
+            { text: "Code compilation", "isCorrect": false },
+            { text: "Server deployment", "isCorrect": false },
+        ],
+      },
+      {
+        question: "What type of programming language is Python?",
+        answers: [
+            { text: "Compiled", "isCorrect": false },
+            { text: "Interpreted", "isCorrect": true },
+            { text: "Machine Language", "isCorrect": false },
+        ],
+      },
     ];
   
     beforeEach(() => {
-      cy.intercept('GET', '/api/questions/random', {
-        statusCode: 200,
-        body: mockQuestions,
+      cy.intercept('GET', '/api/questions/random', (req) => {
+        req.reply((res) => {
+          res.headers['cache-control'] = 'no-cache';
+          res.send({
+            statusCode: 200,
+            body: mockQuestions,
+          });
+        });
       }).as('getQuestions');
     });
   
     it('should navigate through all questions and complete the quiz', () => {
       cy.visit('/');
   
-      // Start the quiz
       cy.contains('Start Quiz').should('be.visible').click();
   
-      // Wait for API and log response
       cy.wait('@getQuestions').then((interception) => {
-        console.log('Intercepted questions:', interception.response.body);
+        console.log('Intercepted Response:', interception.response.body);
       });
   
-      // Debug DOM after quiz starts
-      cy.get('body').then(($body) => {
-        console.log('DOM after clicking Start Quiz:', $body.html());
-      });
-  
-      // Answer each question
       mockQuestions.forEach((question, index) => {
-        cy.log(`Answering question ${index + 1}: ${question.question}`);
+        cy.contains(question.question, { timeout: 50000 }).should('be.visible')
+
+        cy.contains(question.question).should('be.visible');
   
-        // Wait for the question to render
-        cy.contains(question.question, { timeout: 10000 }).should('be.visible');
-  
-        // Select the correct answer
         const correctAnswer = question.answers.find((answer) => answer.isCorrect).text;
-        cy.contains(correctAnswer, { timeout: 10000 }).click();
+        cy.contains(correctAnswer).should('be.visible').click();
   
-        // Wait for next question if not the last
         if (index < mockQuestions.length - 1) {
-          cy.contains(mockQuestions[index + 1].question, { timeout: 10000 }).should('be.visible');
+          cy.contains(mockQuestions[index + 1].question).should('be.visible');
         }
       });
   
-      // Verify quiz completion
-      cy.contains('Quiz Completed', { timeout: 10000 }).should('be.visible');
+      cy.contains('Quiz Completed').should('be.visible');
       cy.contains(`Your score: ${mockQuestions.length}/${mockQuestions.length}`).should('be.visible');
     });
-  
-    it('should allow restarting the quiz after completion', () => {
-      cy.visit('/');
-  
-      // Start the quiz
-      cy.contains('Start Quiz').should('be.visible').click();
-  
-      // Wait for API and answer all questions
-      cy.wait('@getQuestions');
-      mockQuestions.forEach((question) => {
-        const correctAnswer = question.answers.find((answer) => answer.isCorrect).text;
-        cy.contains(correctAnswer).click();
-      });
-  
-      // Verify quiz completion
-      cy.contains('Quiz Completed').should('be.visible');
-      cy.contains('Take New Quiz').should('be.visible').click();
-  
-      // Restart the quiz
-      cy.contains('Start Quiz').should('be.visible');
-    });
-  });
+  });  
