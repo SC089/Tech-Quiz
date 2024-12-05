@@ -1,62 +1,93 @@
 [
     {
-        "id": 1,
-        "question": "What does HTML stand for?",
-        "options": ["Hyper Text Markup Language", "Hot Mail", "How To Make Lasagna"],
-        "answer": "Hyper Text Markup Language"
+      "id": 1,
+      "question": "What does HTML stand for?",
+      "answers": [
+        { "text": "Hyper Text Markup Language", "isCorrect": true },
+        { "text": "Hot Mail", "isCorrect": false },
+        { "text": "How To Make Lasagna", "isCorrect": false }
+      ]
     },
     {
-        "id": 2,
-        "question": "What does CSS stand for?",
-        "options": ["Cascading Style Sheets", "Creative Style System", "Colorful Style Sheets"],
-        "answer": "Cascading Style Sheets"
+      "id": 2,
+      "question": "What does CSS stand for?",
+      "answers": [
+        { "text": "Cascading Style Sheets", "isCorrect": true },
+        { "text": "Creative Style System", "isCorrect": false },
+        { "text": "Colorful Style Sheets", "isCorrect": false }
+      ]
     },
     {
-        "id": 3,
-        "question": "What does JS stand for?",
-        "options": ["JavaSource", "JavaScript", "Just Script"],
-        "answer": "JavaScript"
+      "id": 3,
+      "question": "What does JS stand for?",
+      "answers": [
+        { "text": "JavaScript", "isCorrect": true },
+        { "text": "JavaSource", "isCorrect": false },
+        { "text": "Just Script", "isCorrect": false }
+      ]
     },
     {
-        "id": 4,
-        "question": "Which company developed the React framework?",
-        "options": ["Google", "Facebook", "Microsoft"],
-        "answer": "Facebook"
+      "id": 4,
+      "question": "Which company developed the React framework?",
+      "answers": [
+        { "text": "Google", "isCorrect": false },
+        { "text": "Facebook", "isCorrect": true },
+        { "text": "Microsoft", "isCorrect": false }
+      ]
     },
     {
-        "id": 5,
-        "question": "What does API stand for?",
-        "options": ["Application Programming Interface", "Advanced Programming Integration", "Application Process Integration"],
-        "answer": "Application Programming Interface"
+      "id": 5,
+      "question": "What does API stand for?",
+      "answers": [
+        { "text": "Application Programming Interface", "isCorrect": true },
+        { "text": "Advanced Programming Integration", "isCorrect": false },
+        { "text": "Application Process Integration", "isCorrect": false }
+      ]
     },
     {
-        "id": 6,
-        "question": "Which of these is a NoSQL database?",
-        "options": ["MongoDB", "MySQL", "PostgreSQL"],
-        "answer": "MongoDB"
+      "id": 6,
+      "question": "Which of these is a NoSQL database?",
+      "answers": [
+        { "text": "MongoDB", "isCorrect": true },
+        { "text": "MySQL", "isCorrect": false },
+        { "text": "PostgreSQL", "isCorrect": false }
+      ]
     },
     {
-        "id": 7,
-        "question": "What is the purpose of version control systems like Git?",
-        "options": ["To create graphics", "To manage and track changes in code", "To debug applications"],
-        "answer": "To manage and track changes in code"
+      "id": 7,
+      "question": "What is the purpose of version control systems like Git?",
+      "answers": [
+        { "text": "To create graphics", "isCorrect": false },
+        { "text": "To manage and track changes in code", "isCorrect": true },
+        { "text": "To debug applications", "isCorrect": false }
+      ]
     },
     {
-        "id": 8,
-        "question": "Which of these is a front-end framework?",
-        "options": ["Laravel", "Django", "Angular"],
-        "answer": "Angular"
+      "id": 8,
+      "question": "Which of these is a front-end framework?",
+      "answers": [
+        { "text": "Laravel", "isCorrect": false },
+        { "text": "Django", "isCorrect": false },
+        { "text": "Angular", "isCorrect": true }
+      ]
     },
     {
-        "id": 9,
-        "question": "What is Cypress primarily used for?",
-        "options": ["End-to-end testing", "Code compilation", "Server deployment"],
-        "answer": "End-to-end testing"
+      "id": 9,
+      "question": "What is Cypress primarily used for?",
+      "answers": [
+        { "text": "End-to-end testing", "isCorrect": true },
+        { "text": "Code compilation", "isCorrect": false },
+        { "text": "Server deployment", "isCorrect": false }
+      ]
     },
     {
-        "id": 10,
-        "question": "What type of programming language is Python?",
-        "options": ["Compiled", "Interpreted", "Machine Language"],
-        "answer": "Interpreted"
+      "id": 10,
+      "question": "What type of programming language is Python?",
+      "answers": [
+        { "text": "Compiled", "isCorrect": false },
+        { "text": "Interpreted", "isCorrect": true },
+        { "text": "Machine Language", "isCorrect": false }
+      ]
     }
-]
+  ]
+  

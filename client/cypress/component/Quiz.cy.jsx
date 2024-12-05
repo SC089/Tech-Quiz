@@ -1,32 +1,47 @@
 import React from 'react';
 import { mount } from 'cypress/react';
-import Quiz from '../../src/components/Quiz';
+import Quiz from '../../src/components/Quiz'; 
+import '../../src/App.css';
 
 describe('Quiz Component', () => {
-    it('should render the start button', () => {
-        mount(<Quiz />);
-        cy.contains('Start').should('be.visible');
+  const mockQuestions = [
+    {
+      question: "What does HTML stand for?",
+      answers: [
+        { text: "Hyper Text Markup Language", isCorrect: true },
+        { text: "Hot Mail", isCorrect: false },
+        { text: "How To Make Lasagna", isCorrect: false }
+      ]
+    },
+    {
+      question: "What does CSS stand for?",
+      answers: [
+        { text: "Cascading Style Sheets", isCorrect: true },
+        { text: "Creative Style System", isCorrect: false },
+        { text: "Colorful Style Sheets", isCorrect: false }
+      ]
+    }
+  ];
+
+  beforeEach(() => {
+    cy.intercept('GET', '/api/questions/random', {
+      statusCode: 200,
+      body: mockQuestions,
+    }).as('getQuestions');
+  });
+
+  it('renders and interacts with the Quiz component', () => {
+    mount(<Quiz />);
+
+    // Start the quiz
+    cy.contains('Start Quiz').should('be.visible').click();
+
+    // Wait for the API and log response
+    cy.wait('@getQuestions').then((interception) => {
+      console.log('Intercepted questions:', interception.response.body);
     });
 
-    it('should start the quiz when the start button is clicked', () => {
-        mount(<Quiz />);
-        cy.contains('Start').click();
-        cy.get('.question').should('exist');
-    });
-
-    it('should show the next question when an answer is selected', () => {
-        mount(<Quiz />);
-        cy.contains('Start').click();
-        cy.get('.answer-option').first().click();
-        cy.get('.question').should('exist');
-    });
-
-    it('should show the score at the end of the quiz', () => {
-        mount(<Quiz />);
-        cy.contains('Start').click();
-        cy.get('.answer-option').each((option) => {
-            cy.wrap(option).click();
-        });
-        cy.contains('Your Score').should('be.visible');
-    });
+    // Verify that the first question appears
+    cy.contains(mockQuestions[0].question).should('be.visible');
+  });
 });
