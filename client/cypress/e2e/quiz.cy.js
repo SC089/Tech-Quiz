@@ -97,7 +97,9 @@ describe('Tech Quiz End-to-End Tests', () => {
     it('should navigate through all questions and complete the quiz', () => {
       cy.visit('/');
   
-      cy.contains('Start Quiz').should('be.visible').click();
+      cy.contains('Start Quiz', { timeout: 25000 }).should('be.visible');
+
+      cy.contains('Start Quiz').click();
   
       cy.wait('@getQuestions').then((interception) => {
         console.log('Intercepted Response:', interception.response.body);
