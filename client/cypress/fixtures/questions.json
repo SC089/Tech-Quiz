@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "question": "What does HTML stand for?",
+        "options": ["Hyper Text Markup Language", "Hot Mail", "How To Make Lasagna"],
+        "answer": "Hyper Text Markup Language"
+    },
+    {
+        "id": 2,
+        "question": "What does CSS stand for?",
+        "options": ["Cascading Style Sheets", "Creative Style System", "Colorful Style Sheets"],
+        "answer": "Cascading Style Sheets"
+    },
+    {
+        "id": 3,
+        "question": "What does JS stand for?",
+        "options": ["JavaSource", "JavaScript", "Just Script"],
+        "answer": "JavaScript"
+    },
+    {
+        "id": 4,
+        "question": "Which company developed the React framework?",
+        "options": ["Google", "Facebook", "Microsoft"],
+        "answer": "Facebook"
+    },
+    {
+        "id": 5,
+        "question": "What does API stand for?",
+        "options": ["Application Programming Interface", "Advanced Programming Integration", "Application Process Integration"],
+        "answer": "Application Programming Interface"
+    },
+    {
+        "id": 6,
+        "question": "Which of these is a NoSQL database?",
+        "options": ["MongoDB", "MySQL", "PostgreSQL"],
+        "answer": "MongoDB"
+    },
+    {
+        "id": 7,
+        "question": "What is the purpose of version control systems like Git?",
+        "options": ["To create graphics", "To manage and track changes in code", "To debug applications"],
+        "answer": "To manage and track changes in code"
+    },
+    {
+        "id": 8,
+        "question": "Which of these is a front-end framework?",
+        "options": ["Laravel", "Django", "Angular"],
+        "answer": "Angular"
+    },
+    {
+        "id": 9,
+        "question": "What is Cypress primarily used for?",
+        "options": ["End-to-end testing", "Code compilation", "Server deployment"],
+        "answer": "End-to-end testing"
+    },
+    {
+        "id": 10,
+        "question": "What type of programming language is Python?",
+        "options": ["Compiled", "Interpreted", "Machine Language"],
+        "answer": "Interpreted"
+    }
+]
